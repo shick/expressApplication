@@ -30,8 +30,8 @@ If everything is ok, you can see in the terminal the message
 Server running at http://localhost:3000/
 ```
 
-This trivial project simply checks if in the URL the presence of 'name' parameter.
-If 'name is setted, the result is
+This trivial project simply checks in the URL the presence of 'name' parameter.
+If 'name' is setted, the result is
 `
 Hello 'name'
 `
