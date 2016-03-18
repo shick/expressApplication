@@ -3,18 +3,30 @@
  */
 
 var express = require('express');
+
+// Chaining several middleware in a single routing definition
+var hasName = function (req, res, next) {
+    if (req.param('name')) {
+        next();
+    }
+    else {
+        res.send('What\'s your name?');
+    }
+};
+
+var sayHello = function (req, res, next) {
+    res.send('Hello ' + req.param('name'));
+}
+
 var app = express();
 
 var logger = function (req, res, next) {
-    console.log('Reveived request: ' + req.method + ' ' + req.path);
+    console.log('Received request: ' + req.method + ' ' + req.path);
     next();
 }
 
 app.use(logger);
-app.use('/', function (req, res) {
-    res.send('Hello World');
-});
-
+app.get('/', hasName, sayHello);
 app.listen(3000);
 
 console.log('Server running at http://localhost:3000/');
